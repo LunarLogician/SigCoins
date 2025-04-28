@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: sigcoin-frontend
+    env: node
+    buildCommand: cd Frontend/vite-project && npm install && npm run build
+    startCommand: cd Frontend/vite-project && npm run preview
+    envVars:
+      - key: VITE_API_URL
+        value: https://sigcoin-backend.onrender.com 
