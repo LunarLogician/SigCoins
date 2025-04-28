@@ -16,7 +16,12 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(process.cwd(), 'views')); // Use process.cwd() for dynamic path resolution
 
 // Middleware
-app.use(cors()); // Enable CORS
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+}));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 
 

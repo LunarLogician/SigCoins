@@ -17,8 +17,10 @@ app.set('view engine', 'ejs');
 
 // Middleware
 app.use(cors({
-    origin: 'http://localhost:5173', 
-    credentials: true, 
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
 }));
 app.use(cookieParser()); // Add cookie-parser middleware
 app.use(bodyParser.json());
@@ -83,7 +85,7 @@ app.listen(PORT, () => {
 });
 
 // Graceful Shutdown
-process.on('SIGINT', () => {
+process.on('SIGINT', () => {yarn start
     mongoose.connection.close(() => {
         console.log('MongoDB connection closed.');
         process.exit(0);
