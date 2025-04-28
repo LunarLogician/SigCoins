@@ -8,7 +8,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser'; 
 import path from 'path';
 
-dotenv.config(); // Load environment variables from .env file
+dotenv.config();
 
 const app = express();
 
@@ -17,8 +17,10 @@ app.set('view engine', 'ejs');
 
 // Middleware
 app.use(cors({
-    origin: 'http://localhost:5173', 
-    credentials: true, 
+    origin: '*', // Allow all origins
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
+    credentials: true
 }));
 app.use(cookieParser()); // Add cookie-parser middleware
 app.use(bodyParser.json());
@@ -30,7 +32,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api', miningRoutes);
 
 // MongoDB Connection
-const mongoURL = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/treasure_coin'; // Use environment variable or fallback to local DB
+const mongoURL = process.env.MONGO_URI
 mongoose.connect(mongoURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -77,7 +79,7 @@ app.post('/api/auth/login', async (req, res) => {
 });
 
 // Start Server
-const PORT = process.env.PORT || 5000; // Use environment variable or fallback to 5000
+const PORT = process.env.PORT // Use environment variable or fallback to 5000
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

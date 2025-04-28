@@ -2,9 +2,11 @@
   "name": "treasurecoinapp",
   "version": "1.0.0",
   "description": "",
-  "main": "Index.js",
+  "main": "src/index.js",
   "type": "module",
   "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
     "test": "nodemon --ext js --watch tests/selenium mocha tests/selenium/*.test.js"
   },
   "author": "",
@@ -17,6 +19,8 @@
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
+    "axios": "^1.9.0",
+    "react-router-dom": "^7.5.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.7.0",
     "nodemon": "^3.1.7",
