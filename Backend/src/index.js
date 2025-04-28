@@ -17,7 +17,7 @@ app.set('view engine', 'ejs');
 
 // Middleware
 app.use(cors({
-    origin: '*',
+    origin: ['https://sigcoins.onrender.com', 'http://localhost:5173'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
@@ -85,7 +85,7 @@ app.listen(PORT, () => {
 });
 
 // Graceful Shutdown
-process.on('SIGINT', () => {yarn start
+process.on('SIGINT', () => {
     mongoose.connection.close(() => {
         console.log('MongoDB connection closed.');
         process.exit(0);
