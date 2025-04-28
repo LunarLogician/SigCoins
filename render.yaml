@@ -2,8 +2,12 @@ services:
   - type: web
     name: sigcoins-backend
     env: node
-    buildCommand: cd Backend && npm install
-    startCommand: cd Backend && npm start
+    buildCommand: |
+      cd Backend
+      npm install
+    startCommand: |
+      cd Backend
+      node src/index.js
     envVars:
       - key: NODE_VERSION
         value: 20.0.0
