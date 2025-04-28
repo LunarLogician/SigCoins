@@ -16,13 +16,14 @@ export default function LoginPage() {
 
     try {
       const apiUrl = import.meta.env.VITE_API_URL;
-      const response = await fetch(`${apiUrl}/api/auth/login`, {
+      const response = await fetch(`https://sigcoins-5.onrender.com/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ username, password }),
       });
+      console.log(apiUrl);
       const data = await response.json();
 
       if (!response.ok) {

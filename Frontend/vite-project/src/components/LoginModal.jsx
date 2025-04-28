@@ -10,22 +10,21 @@ function Modal({ closeModal }) {
     let [text, setText] = useState("");
   
     const Handlesubmission = async (e) => {
-      const nav = useNavigate();
-
-
       e.preventDefault();
       try {
-        const response = await axios.post("https://sigcoins-3.onrender.com/", {
+        const apiUrl = import.meta.env.VITE_API_URL;
+        const response = await axios.post(`${apiUrl}/api/auth/login`, {
           username,
           password,
         });
         setText(response.data.message);
-        localStorage.setItem('token', response.data.token);
-        nav('/Options');
-        
+        const Token = response.data.key1;
+        localStorage.setItem('Token', Token);
+        window.location.href = '/dashboard';
+        closeModal();
       } catch (error) {
-        console.error("Error during registration:", error);
-        setText("Failed to register.");
+        console.error("Error during login:", error);
+        setText("Failed to login.");
       }
     };
   

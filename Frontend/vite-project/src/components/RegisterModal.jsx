@@ -13,24 +13,22 @@ function RegisterModal({ closeModalLo }) {
   const Handlesubmission = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://sigcoins-3.onrender.com/", {
+      const apiUrl = import.meta.env.VITE_API_URL;
+      const response = await axios.post(`${apiUrl}/api/auth/register`, {
         username,
         password,
       });
 
-      localStorage.setItem("token", response.data.token);
       if (response.data.success) {
-        console.log("jjaj")
-        navigate("/Options");
-        closeModalLo()
-
+        setText("Registration successful!");
+        window.location.href = '/login';
+        closeModalLo();
+      } else {
+        setText(response.data.message || "Registration failed");
       }
-
-
-      console.log(response.data.success);
     } catch (error) {
       console.error("Error during registration:", error);
-      setText("Failed to register.");
+      setText(error.response?.data?.message || "Failed to register.");
     }
   };
 

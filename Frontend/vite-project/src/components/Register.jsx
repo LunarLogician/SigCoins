@@ -27,7 +27,7 @@ export default function RegisterPage() {
 
     try {
       const apiUrl = import.meta.env.VITE_API_URL;
-      const response = await fetch(`${apiUrl}/api/auth/register`, {
+      const response = await fetch(`https://sigcoins-5.onrender.com/api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
