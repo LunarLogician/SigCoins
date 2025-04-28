@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Coins } from 'lucide-react';
+
 import Button from './ui/Button';
 
 export default function RegisterPage() {
